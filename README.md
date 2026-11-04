@@ -183,4 +183,4 @@ Projeto em desenvolvimento. Novas melhorias, funcionalidades e testes poderão s
 
 **Rener Moreira**
 
-- GitHub: [@renermoreira-git](https://github.com/renermoreira-git)
+- GitHub: [@renermoreira](https://github.com/renermoreira)
