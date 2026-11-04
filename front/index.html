@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Estoque</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main>
+  <header>
+    <div>
+      <h1>Estoque</h1>
+      <p>Cadastre, edite e acompanhe seus produtos.</p>
+    </div>
+    <button class="primary" id="btnNovo">Novo produto</button>
+  </header>
+
+  <div id="banner" role="alert"></div>
+
+  <section class="summary" aria-label="Resumo">
+    <div><span>Produtos cadastrados</span><strong id="sProdutos">0</strong></div>
+    <div><span>Unidades em estoque</span><strong id="sUnidades">0</strong></div>
+    <div><span>Valor em estoque</span><strong id="sValor">R$ 0,00</strong></div>
+  </section>
+
+  <div class="tools">
+    <input id="busca" type="search" placeholder="Filtrar por nome, SKU ou categoria" aria-label="Filtrar produtos">
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr>
+        <th>Produto</th><th>SKU</th><th>Categoria</th>
+        <th class="num">Qtd.</th><th class="num">Preço</th><th>Situação</th><th><span class="sr">Ações</span></th>
+      </tr></thead>
+      <tbody id="lista"></tbody>
+    </table>
+    <div id="vazio" class="empty" hidden>Nenhum produto cadastrado. Clique em “Novo produto” para começar.</div>
+  </div>
+</main>
+
+<dialog id="dlg">
+  <form id="form" method="dialog">
+    <h2 id="dlgTitulo">Novo produto</h2>
+    <p id="formError" role="alert"></p>
+    <label>Nome<input name="nome" required maxlength="80"></label>
+    <div class="row">
+      <label>SKU<input name="sku" required maxlength="30"></label>
+      <label>Categoria<input name="categoria" required maxlength="40"></label>
+    </div>
+    <div class="row">
+      <label>Quantidade<input name="quantidade" type="number" min="0" step="1" required></label>
+      <label>Preço (R$)<input name="preco" type="number" min="0" step="0.01" required></label>
+    </div>
+    <div class="actions">
+      <button type="button" id="btnCancelar">Cancelar</button>
+      <button type="submit" class="primary">Salvar produto</button>
+    </div>
+  </form>
+</dialog>
+<script src="javascript.js"></script>
+</body>
+</html>
