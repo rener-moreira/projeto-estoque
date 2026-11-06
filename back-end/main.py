@@ -110,17 +110,3 @@ def atualizar_produto(id:int, prod_novo: ProdutosEntrada):
         conectar.close()
     
     return {"msg":"Produto Atualizado com sucesso"}
-
-
-    # for produto in produtos:
-    #     if produto["id"] == id :
-    #         if any(p["sku"] == prod_novo.sku and p["id"] != id for p in produtos):
-    #           raise HTTPException (409, "SKU já em uso") 
-    #         produto.update(prod_novo.model_dump())
-    #         return produto
-
-    # raise HTTPException(404, "Produto não encontrado")
-
-
-    # Problemas: 
-    #     Corrigir a atualização do SKU, para não atualizar produtos com um SKU existente
