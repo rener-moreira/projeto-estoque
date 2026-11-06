@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Entrar · Estoque</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="auth.css">
+</head>
+<body>
+<main class="auth">
+  <h1>Estoque</h1>
+  <p class="sub">Entre para gerenciar seus produtos.</p>
+
+  <div class="auth-card">
+    <div class="tabs" role="tablist">
+      <button type="button" role="tab" id="tabEntrar" aria-selected="true">Entrar</button>
+      <button type="button" role="tab" id="tabCriar" aria-selected="false">Criar conta</button>
+    </div>
+
+    <p id="msg" role="alert"></p>
+
+    <form id="formLogin">
+      <label>E-mail<input name="email" type="email" autocomplete="email" required></label>
+      <label>Senha<input name="senha" type="password" autocomplete="current-password" required></label>
+      <button type="submit" class="primary full">Entrar</button>
+    </form>
+
+    <form id="formCadastro" hidden>
+      <label>Nome<input name="nome" autocomplete="name" required maxlength="80"></label>
+      <label>E-mail<input name="email" type="email" autocomplete="email" required></label>
+      <label>Senha (mínimo 8 caracteres)<input name="senha" type="password" autocomplete="new-password" minlength="8" required></label>
+      <label>Confirmar senha<input name="confirmar" type="password" autocomplete="new-password" minlength="8" required></label>
+      <button type="submit" class="primary full">Criar conta</button>
+    </form>
+  </div>
+</main>
+<script src="login.js"></script>
+</body>
+</html>

@@ -7,6 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="auth.css">
 </head>
 <body>
 <main>
@@ -15,7 +16,11 @@
       <h1>Estoque</h1>
       <p>Cadastre, edite e acompanhe seus produtos.</p>
     </div>
-    <button class="primary" id="btnNovo">Novo produto</button>
+    <div class="header-actions">
+      <span id="usuarioNome"></span>
+      <button id="btnSair">Sair</button>
+      <button class="primary" id="btnNovo">Novo produto</button>
+    </div>
   </header>
 
   <div id="banner" role="alert"></div>
