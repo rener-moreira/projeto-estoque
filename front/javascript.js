@@ -6,13 +6,27 @@ const LIMITE_ESTOQUE_BAIXO = 5;
 let produtos = [];
 let editandoId = null;
 const $ = (id) => document.getElementById(id);
+// ====== LOGIN ======
+const token = localStorage.getItem("token");
+if (!token) location.href = "login.html";
+
+function sair() {
+  localStorage.removeItem("token");
+  localStorage.removeItem("usuario");
+  location.href = "login.html";
+}
+
 const brl = (v) => Number(v).toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
 
 async function api(caminho, opcoes = {}) {
   const resp = await fetch(API_URL + caminho, {
-    headers: { "Content-Type": "application/json" },
+    headers: { "Content-Type": "application/json", "Authorization": "Bearer " + token },
     ...opcoes,
   });
+  if (resp.status === 401) {
+    sair();
+    throw new Error("Sessão expirada. Entre novamente.");
+  }
   if (resp.status === 204) return null;
   let dados = null;
   try { dados = await resp.json(); } catch (_) {}
@@ -137,4 +151,6 @@ async function excluir(p) {
 $("btnNovo").onclick = () => abrirForm(null);
 $("btnCancelar").onclick = () => $("dlg").close();
 $("busca").addEventListener("input", desenhar);
+$("usuarioNome").textContent = localStorage.getItem("usuario") || "";
+$("btnSair").onclick = sair;
 carregar();

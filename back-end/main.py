@@ -1,9 +1,19 @@
 from fastapi import FastAPI, HTTPException
 from models import ProdutosEntrada, Produto
 from psycopg.errors import UniqueViolation
+from fastapi.middleware.cors import CORSMiddleware
 from banco import conexao
+from routers import auth
 
 app = FastAPI()
+app.include_router(auth.router)
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 @app.get("/produtos", response_model=list[Produto])
 def listar_produtos():
