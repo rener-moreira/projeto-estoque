@@ -35,3 +35,45 @@ def criar_conta(user: CadastroUser):
         conectar.close()
 
     return {"msg":"Email Cadastrado com Sucesso"} 
+
+
+@router.post("/login")
+def login(login: Login):
+    email = login.email.strip()
+    email_tratado = email.lower()
+
+    conectar = conexao()
+    cursor = conectar.cursor()
+
+    try:
+        cursor.execute(
+            "SELECT id, nome, senha FROM usuarios WHERE email=%s", (email_tratado,)
+        )
+
+        resultado = cursor.fetchone()
+     
+    finally:
+        cursor.close()
+        conectar.close()
+
+    if resultado is None:
+        raise HTTPException(401, "Email ou senha incorretos")
+
+    try:
+        hasher.verify(resultado["senha"],login.senha)
+    except VerifyMismatchError:
+        raise HTTPException(401, "Email ou senha incorretos")
+
+
+    payload = {
+        'sub': str(resultado['id']),
+        'exp': datetime.now(timezone.utc) + timedelta(hours=1)
+        }  
+
+    token = jwt.encode(payload, os.environ["JWT_SECRET"], algorithm="HS256")
+
+    return {
+    "access_token": token,
+    "token_type": "bearer",
+    "nome": resultado["nome"],
+    }
